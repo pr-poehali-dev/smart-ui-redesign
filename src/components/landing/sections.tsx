@@ -30,7 +30,7 @@ export const sections = [
     id: 'join',
     title: 'Готов к приключениям?',
     content: 'Скопируй IP сервера, запускай Minecraft и погружайся в игру. Новички получают стартовый набор ресурсов бесплатно.',
-    showButton: true,
-    buttonText: 'Подключиться'
+    showIp: true,
+    ip: 'dfg24',
   },
 ]

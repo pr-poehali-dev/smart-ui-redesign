@@ -1,8 +1,20 @@
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import Icon from "@/components/ui/icon"
 import type { SectionProps } from "@/types"
 
-export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, image }: SectionProps) {
+export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, image, showIp, ip }: SectionProps) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = () => {
+    if (ip) {
+      navigator.clipboard.writeText(ip)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
   return (
     <section id={id} className="relative h-screen w-full snap-start flex items-center p-8 md:p-16 lg:p-24">
       <div className={`flex w-full items-center gap-8 lg:gap-16 ${image ? 'flex-col lg:flex-row' : 'flex-col'}`}>
@@ -34,6 +46,28 @@ export default function Section({ id, title, subtitle, content, isActive, showBu
             >
               {content}
             </motion.p>
+          )}
+          {showIp && ip && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isActive ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-8 lg:mt-12"
+            >
+              <button
+                onClick={handleCopy}
+                className="group flex items-center gap-4 bg-white/5 border border-white/10 hover:border-[#55C056]/50 rounded-xl px-6 py-4 transition-all cursor-pointer"
+              >
+                <span className="text-xs text-neutral-500 uppercase tracking-widest">IP сервера</span>
+                <span className="text-2xl md:text-3xl font-mono font-bold text-white tracking-wider">{ip}</span>
+                <span className="ml-2 text-neutral-500 group-hover:text-[#55C056] transition-colors">
+                  {copied ? <Icon name="Check" size={20} /> : <Icon name="Copy" size={20} />}
+                </span>
+              </button>
+              {copied && (
+                <p className="text-sm text-[#55C056] mt-2">Скопировано!</p>
+              )}
+            </motion.div>
           )}
           {showButton && (
             <motion.div
