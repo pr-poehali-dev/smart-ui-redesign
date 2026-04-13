@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import Icon from "@/components/ui/icon"
 import type { SectionProps } from "@/types"
 
-export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, image, showIp, ip }: SectionProps) {
+export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, image, showIp, ip, scrollTo }: SectionProps) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = () => {
@@ -80,6 +80,11 @@ export default function Section({ id, title, subtitle, content, isActive, showBu
                 variant="outline"
                 size="lg"
                 className="text-[#55C056] bg-transparent border-[#55C056] hover:bg-[#55C056] hover:text-black transition-colors"
+                onClick={() => {
+                  if (scrollTo) {
+                    document.getElementById(scrollTo)?.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
               >
                 {buttonText}
               </Button>

@@ -10,6 +10,7 @@ export interface Section {
   image?: string
   showIp?: boolean
   ip?: string
+  scrollTo?: string
 }
 
 export interface SectionProps extends Section {
