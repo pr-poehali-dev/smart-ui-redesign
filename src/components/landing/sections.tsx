@@ -32,6 +32,6 @@ export const sections = [
     title: 'Готов к приключениям?',
     content: 'Скопируй IP сервера, запускай Minecraft и погружайся в игру. Новички получают стартовый набор ресурсов бесплатно.',
     showIp: true,
-    ip: 'dfg24',
+    ip: 'https://preview--smart-ui-redesign.poehali.dev/',
   },
 ]
